@@ -1,65 +1,79 @@
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Ghost, Sparkles, Layout, Zap } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-base flex flex-col items-center justify-center p-8 space-y-8">
+      <div className="flex flex-col items-center text-center space-y-4">
+        <div className="p-4 bg-accent-primary-dim rounded-full">
+          <Ghost className="w-12 h-12 text-accent-primary" />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+        <h1 className="text-5xl font-bold tracking-tighter text-primary">
+          Ghost AI
+        </h1>
+        <p className="text-text-secondary max-w-[600px] text-lg">
+          Collaborative system design workspace powered by AI. 
+          Map your architecture in real-time.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
+        <Card className="border-default bg-surface">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-accent-ai" />
+              AI Architect
+            </CardTitle>
+            <CardDescription>
+              Generate complex system diagrams from natural language prompts.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <Input placeholder="Describe your system..." className="bg-subtle border-subtle" />
+            <Button className="w-full bg-accent-ai hover:bg-accent-ai/90 text-white font-medium">
+              Generate Design
+            </Button>
+          </CardContent>
+        </Card>
+
+        <Card className="border-default bg-surface">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Layout className="w-5 h-5 text-accent-primary" />
+              Collaborative Canvas
+            </CardTitle>
+            <CardDescription>
+              Work together in real-time with your team.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Tabs defaultValue="nodes" className="w-full">
+              <TabsList className="grid w-full grid-cols-2 bg-subtle">
+                <TabsTrigger value="nodes">Nodes</TabsTrigger>
+                <TabsTrigger value="edges">Edges</TabsTrigger>
+              </TabsList>
+              <TabsContent value="nodes" className="text-sm text-text-muted mt-4">
+                Drag and drop nodes to build your architecture.
+              </TabsContent>
+              <TabsContent value="edges" className="text-sm text-text-muted mt-4">
+                Connect components with smart routing.
+              </TabsContent>
+            </Tabs>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="flex gap-4">
+        <Button variant="outline" className="border-subtle hover:bg-subtle">
+          View Docs
+        </Button>
+        <Button className="bg-accent-primary hover:bg-accent-primary/90 text-bg-base font-bold">
+          Get Started <Zap className="ml-2 w-4 h-4 fill-current" />
+        </Button>
+      </div>
+    </main>
   );
 }
